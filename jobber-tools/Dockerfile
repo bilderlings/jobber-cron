@@ -1,10 +1,7 @@
-FROM blacklabelops/jobber
-MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
-
-# Image Build Date By Buildsystem
-ARG BUILD_DATE=undefined
-
-USER root
+ARG FROM_IMAGE=bilderlings/jobber
+ARG JOBBER_VERSION=1.3.4
+FROM ${FROM_IMAGE}:${JOBBER_VERSION}
+MAINTAINER Nikolay Arhipov <nikolajs.arhipovs@gmail.com>
 
 RUN apk add --update \
       gpgme \
@@ -35,9 +32,5 @@ RUN apk add --update \
     rm -rf /tmp/* && \
     rm -rf /var/log/*
 
-# Image Metadata
-LABEL com.blacklabelops.image.builddate.jobber-tools=${BUILD_DATE}
-
 COPY imagescripts /opt/jobber-tools
 ENTRYPOINT ["/opt/jobber-tools/docker-entrypoint.sh"]
-CMD ["jobberd"]

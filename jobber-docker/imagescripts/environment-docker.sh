@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -o errexit
 
 docker_remote_registry=""
 
-if [ -n "${DOCKER_REGISTRY}" ]; then
+if [[ -n "${DOCKER_REGISTRY}" ]]; then
   docker_remote_registry=${DOCKER_REGISTRY}
 fi
 
@@ -12,7 +12,7 @@ docker_user=""
 docker_user_email=""
 docker_user_password=""
 
-if [ -n "${DOCKER_REGISTRY_USER}" ]; then
+if [[ -n "${DOCKER_REGISTRY_USER}" ]]; then
   docker_user=${DOCKER_REGISTRY_USER}
   docker_user_email=${DOCKER_REGISTRY_EMAIL}
   docker_user_password=${DOCKER_REGISTRY_PASSWORD}

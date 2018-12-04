@@ -1,8 +1,8 @@
 # Dockerized Jobber Cron
 
-[![Open Issues](https://img.shields.io/github/issues/blacklabelops/jobber-cron.svg)](https://github.com/blacklabelops/jobber-cron/issues)
-[![Stars on GitHub](https://img.shields.io/github/stars/blacklabelops/jobber-cron.svg)](https://github.com/cblacklabelops/jobber-cron/stargazers)
-[![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/)
+[![Open Issues](https://img.shields.io/github/issues/bilderlings/jobber-cron.svg)](https://github.com/bilderlings/jobber-cron/issues)
+[![Stars on GitHub](https://img.shields.io/github/stars/bilderlings/jobber-cron.svg)](https://github.com/cbilderlings/jobber-cron/stargazers)
+[![Docker Stars](https://img.shields.io/docker/stars/bilderlings/jobber.svg)](https://hub.docker.com/r/bilderlings/jobber/) [![Docker Pulls](https://img.shields.io/docker/pulls/bilderlings/jobber.svg)](https://hub.docker.com/r/bilderlings/jobber/)
 
 > Docker Container Cron Alternative With Jobber.
 
@@ -10,12 +10,9 @@
 
 | Bundle | Version | Tags  | Dockerfile | Readme | Example |
 |--------|---------|-------|------------|--------|---------|
-| Jobber  | latest, v1.2 | latest, v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/README.md) | blacklabelops/jobber:latest
-| Jobber + Tools  | latest, v1.2 | tools, tools.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-tools/Dockerfile) | | blacklabelops/jobber:tools |
-| Jobber + Docker Tools | latest | docker, docker.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/README.md) | blacklabelops/jobber:docker |
-| Jobber + AWS Cli | latest, v1.2 | aws, tools.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/README.md) | blacklabelops/jobber:aws |
-| Jobber + GCE Cli | latest, v1.2 | gce, gce.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:gce |
-| Jobber + All Above | latest, v1.2 | cloud, cloud.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:cloud |
+| Jobber  | latest, v1.3.4 | latest, v1.3.4 | [Dockerfile](https://github.com/bilderlings/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/bilderlings/jobber-cron/blob/master/README.md) | bilderlings/jobber:latest
+| Jobber + Tools  | latest, v1.3.4 | tools, tools.v1.3.4 | [Dockerfile](https://github.com/bilderlings/jobber-cron/blob/master/jobber-tools/Dockerfile) | | bilderlings/jobber:tools |
+| Jobber + Docker Tools | latest | docker, docker.v1.3.4 | [Dockerfile](https://github.com/bilderlings/jobber-cron/blob/master/jobber-docker/Dockerfile) | [Readme](https://github.com/bilderlings/jobber-cron/blob/master/jobber-docker/README.md) | bilderlings/jobber:docker |
 
 > AWS = Amazon Web Services, GCE = Google Cloud Engine
 
@@ -30,7 +27,7 @@ $ docker run -d \
     --name jobber \
     -e "JOB_NAME1=TestEcho" \
     -e "JOB_COMMAND1=echo hello world" \
-    blacklabelops/jobber
+    bilderlings/jobber
 ~~~~
 
 > Will print "hello world" to console every second.
@@ -51,7 +48,7 @@ $ docker run -d \
     -e "JOB_COMMAND1=echo hello world" \
     -e "JOB_NAME2=TestEcho" \
     -e "JOB_COMMAND2=echo hello moon" \
-    blacklabelops/jobber
+    bilderlings/jobber
 ~~~~
 
 > First job will print "hello world" and then second job will print "hello moon" to console every second.
@@ -59,7 +56,7 @@ $ docker run -d \
 # Environment Variables
 
 Globally, there is a notify program defined, default one is `sendmail`, you can override it using an environment variable, `JOBS_NOTIFY_CMD`.  
-This program will receive a JSON payload as [specified in the jobber docs](https://dshearer.github.io/jobber/doc/v1.2/#error-handling)
+This program will receive a JSON payload as [specified in the jobber docs](https://dshearer.github.io/jobber/doc/v1.3.4/#error-handling)
 
 Every job definition is specified by up to four environment variables:
 
@@ -82,7 +79,7 @@ $ docker run -d \
     -e "JOB_ON_ERROR1=Backoff" \
     -e "JOB_NOTIFY_ERR1=true" \
     -e "JOB_NOTIFY_FAIL1=true" \
-    blacklabelops/jobber
+    bilderlings/jobber
 ~~~~
 
 > Will print "hello world" at second 1 of every minute.
@@ -112,7 +109,7 @@ $ docker run \
     -e "JOB_NAME1=TestEcho" \
     -e "JOB_COMMAND1=echo hello world" \
     -e "JOB_TIME1=1 * * * * *"
-    blacklabelops/jobber
+    bilderlings/jobber
 ~~~~
 
 > Will print "hello world" every second.
@@ -127,14 +124,6 @@ As a reminder, cron timetable is like follows:
 1. Token: Day of Month
 1. Token: Month
 1. Token: Day of Week
-
-# Support
-
-Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](http://support.blacklabelops.com)
-
-Maybe no one has ever told you, but munich developers run on beer! If you like my work, share a beer!
-
-[![BeerMe](https://raw.githubusercontent.com/ikkez/Beer-Donation-Button/gh-pages/img/beer_donation_button_single.png)](https://www.paypal.me/donateblacklabelops)
 
 # References
 
