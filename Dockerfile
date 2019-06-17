@@ -1,11 +1,13 @@
 FROM golang:1.11.2-alpine3.8 as builder
 
-ARG JOBBER_VERSION=1.3.4
+ARG JOBBER_VERSION=1.3.4-security
 
 RUN apk add --no-cache git make tzdata rsync
 RUN mkdir -p /jobber && \
-    go get github.com/dshearer/jobber;true && \
-    cd src/github.com/dshearer/jobber && \
+    mkdir -p /src/github.com/dshearer && \
+    cd /src/github.com/dshearer && \
+    git clone git://github.com/bilderlings/jobber.git && \
+    cd ./jobber && \
     if  [ "v${JOBBER_VERSION}" != "latest" ]; then \
         git checkout tags/v${JOBBER_VERSION}; true; \
     fi && \
