@@ -18,8 +18,13 @@ RUN apk add --no-cache curl tini
 
 COPY --from=builder /jobber/usr/local/bin /usr/bin
 COPY --from=builder /jobber/usr/local/libexec /usr/libexec
-RUN mkdir -p /var/jobber/0
 
+RUN mkdir -p /var/jobber/2 && \
+    chown -R 2:2 /var/jobber/2 && \
+    touch /etc/jobber.conf && \
+    chown 2:2 /etc/jobber.conf
+
+USER 2:2
 COPY docker-entrypoint.sh /opt/jobber/docker-entrypoint.sh
 ENTRYPOINT ["/sbin/tini","--","/opt/jobber/docker-entrypoint.sh"]
 CMD ["/usr/libexec/jobberrunner", "/etc/jobber.conf"]
