@@ -6,16 +6,6 @@
 
 > Docker Container Cron Alternative With Jobber.
 
-## Supported tags and respective Dockerfile links
-
-| Bundle | Version | Tags  | Dockerfile | Readme | Example |
-|--------|---------|-------|------------|--------|---------|
-| Jobber  | latest, v1.3.4 | latest, v1.3.4 | [Dockerfile](https://github.com/bilderlings/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/bilderlings/jobber-cron/blob/master/README.md) | bilderlings/jobber:latest
-| Jobber + Tools  | latest, v1.3.4 | tools, tools.v1.3.4 | [Dockerfile](https://github.com/bilderlings/jobber-cron/blob/master/jobber-tools/Dockerfile) | | bilderlings/jobber:tools |
-| Jobber + Docker Tools | latest | docker, docker.v1.3.4 | [Dockerfile](https://github.com/bilderlings/jobber-cron/blob/master/jobber-docker/Dockerfile) | [Readme](https://github.com/bilderlings/jobber-cron/blob/master/jobber-docker/README.md) | bilderlings/jobber:docker |
-
-> AWS = Amazon Web Services, GCE = Google Cloud Engine
-
 # Make It Short!
 
 In short, you can define periodic tasks for an arbitrary number of jobs.

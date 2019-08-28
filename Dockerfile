@@ -16,7 +16,11 @@ RUN mkdir -p /jobber && \
 FROM alpine:3.8
 MAINTAINER Nikolay Arhipov <nikolajs.arhipovs@gmail.com>
 
-RUN apk add --no-cache curl tini
+RUN apk add --update --no-cache \
+    python curl tini jq tar gzip zip unzip rsync which bash
+
+RUN curl -sSL https://sdk.cloud.google.com | bash
+ENV PATH $PATH:/root/google-cloud-sdk/bin
 
 COPY --from=builder /jobber/usr/local/bin /usr/bin
 COPY --from=builder /jobber/usr/local/libexec /usr/libexec
