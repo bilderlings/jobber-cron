@@ -19,18 +19,23 @@ MAINTAINER Nikolay Arhipov <nikolajs.arhipovs@gmail.com>
 RUN apk add --update --no-cache \
     python curl tini jq tar gzip zip unzip rsync which bash
 
+ENV CLOUDSDK_INSTALL_DIR /gcloud/
 RUN curl -sSL https://sdk.cloud.google.com | bash
-ENV PATH $PATH:/root/google-cloud-sdk/bin
+ENV PATH $PATH:/gcloud/google-cloud-sdk/bin
 
 COPY --from=builder /jobber/usr/local/bin /usr/bin
 COPY --from=builder /jobber/usr/local/libexec /usr/libexec
 
-RUN mkdir -p /var/jobber/2 && \
-    chown -R 2:2 /var/jobber/2 && \
-    touch /etc/jobber.conf && \
-    chown 2:2 /etc/jobber.conf
+RUN addgroup -g 1000 -S jobber && \
+    adduser -u 1000 -S jobber -G jobber
 
-USER 2:2
-COPY docker-entrypoint.sh /opt/jobber/docker-entrypoint.sh
-ENTRYPOINT ["/sbin/tini","--","/opt/jobber/docker-entrypoint.sh"]
+RUN mkdir -p /var/jobber/1000 && \
+    chown -R jobber:jobber /var/jobber/1000 && \
+    touch /etc/jobber.conf && \
+    chown jobber:jobber /etc/jobber.conf
+
+USER jobber:jobber
+
+COPY jobber-entrypoint.sh /jobber-entrypoint.sh
+ENTRYPOINT ["/sbin/tini", "--", "/jobber-entrypoint.sh"]
 CMD ["/usr/libexec/jobberrunner", "/etc/jobber.conf"]
