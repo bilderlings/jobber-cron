@@ -1,4 +1,4 @@
-VERSION    ?= 1.3.5
+VERSION    ?= 1.3.4
 IMAGE_NAME ?= bilderlings/jobber
 
 build:
