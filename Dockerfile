@@ -34,7 +34,7 @@ RUN mkdir -p /var/jobber/1000 && \
     touch /etc/jobber.conf && \
     chown jobber:jobber /etc/jobber.conf
 
-USER jobber:jobber
+USER 1000:1000
 
 COPY jobber-entrypoint.sh /jobber-entrypoint.sh
 ENTRYPOINT ["/sbin/tini", "--", "/jobber-entrypoint.sh"]
