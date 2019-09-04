@@ -17,7 +17,7 @@ FROM alpine:3.8
 MAINTAINER Nikolay Arhipov <nikolajs.arhipovs@gmail.com>
 
 RUN apk add --update --no-cache \
-    python curl tini jq tar gzip zip unzip rsync which bash
+    python curl tini jq tar gzip zip unzip rsync which bash openssh sshpass
 
 ENV CLOUDSDK_INSTALL_DIR /gcloud/
 RUN curl -sSL https://sdk.cloud.google.com | bash
