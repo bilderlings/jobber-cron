@@ -3,7 +3,7 @@ IMAGE_NAME ?= bilderlings/jobber
 
 build:
 	docker build \
-		--build-arg JOBBER_VERSION=$(VERSION) \
+		--build-arg JOBBER_VERSION=$(VERSION)-security \
 		-t $(IMAGE_NAME):$(VERSION) .
 
 	docker tag $(IMAGE_NAME):$(VERSION) $(IMAGE_NAME):latest
