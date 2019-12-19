@@ -1,4 +1,4 @@
-FROM golang:1.11.2-alpine3.8 as builder
+FROM golang:alpine as builder
 
 ARG JOBBER_VERSION=1.3.4-security
 
@@ -13,7 +13,7 @@ RUN mkdir -p /jobber && \
     fi && \
     make install DESTDIR=/jobber
 
-FROM alpine:3.8
+FROM alpine
 MAINTAINER Nikolay Arhipov <nikolajs.arhipovs@gmail.com>
 
 RUN apk add --update --no-cache \
